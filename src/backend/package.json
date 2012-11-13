@@ -1,0 +1,15 @@
+{
+  "name": "typonerdory-apiwrapper",
+  "description": "A wrapper around the Google Web Fonts API",
+  "version": "0.0.1",
+  "author": "André König <andre.koenig@gmail.com> (http://profile.lochkartenstanzer.de)",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.x",
+    "request": "2.12.x",
+    "settings": "0.1.x"
+  }
+}
