@@ -1,0 +1,384 @@
+/*!
+ * Typonerdory - google-web-fonts-wrapper
+ *
+ * Copyright(c) 2012 New York City, USA - All rights reserved.
+ *
+ * Author: André König <andre.koenig@gmail.com>
+ *
+ * Modular Scale
+ * http://modularscale.com/scale/?px1=14&px2=160&ra1=1.618&ra2=0
+ * ----------------------
+ * 14px @ 1:1.618
+ * 160px @ 1:1.618
+ * ----------------------
+ */
+
+@import 'foundation';
+@import 'colors';
+@import 'utils';
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+
+$footer-height:40px;
+
+/* Classes */
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+.heart {
+    color:$heart-color;
+}
+
+.button {
+    color:$button-text-color;
+    font-size:120%;
+    font-weight:700;
+    @include transition;
+    opacity:.7;
+
+    &:hover {
+        color:$button-text-color;
+        opacity:1 !important;;
+    }
+
+    .icon {
+        display:inline-block;
+        margin-left:5px;
+    }
+}
+
+[ng\:cloak], [data-ng-cloak], .ng-cloak {
+  display: none;
+}
+
+html, body {
+    height:100%;
+}
+
+a {
+    color:#ff007d;
+
+    &:hover {
+    color:#ff007d;
+
+    }
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+
+    @include radial-gradient($background-gradient-inner, $background-gradient-outer);
+
+    #wrapper {
+        min-height:100%;
+        height:auto;
+
+        .main {
+            padding-bottom:$footer-height;
+
+            header {
+                text-align:center;
+
+                h1 {
+                    font-family:'Lato', sans-serif;
+                    font-weight:300;
+                    text-transform:uppercase;
+
+                    strong {
+                        font-weight:700;
+                    }
+                }
+
+                h2 {
+                    font-size:110%;
+                    font-weight:300;
+                }
+            }
+        }
+    }
+
+    footer {
+        clear:both;
+        font-family:'Lato', sans-serif;
+        height:$footer-height;
+        line-height:$footer-height;
+        margin-top:-$footer-height;
+        position:relative;
+        text-align:center;
+        opacity:.5;
+        @include transition;
+
+        &:hover {
+            opacity:1;
+        }
+    }
+}
+
+.home {
+    header {
+        margin-top:200px;
+
+        @include perspective;
+
+
+        &:hover {
+            h1 {
+                @include rotateY(180deg);    
+              }
+        }
+
+        h1 {
+            font-size:400%;
+
+            @include threedtransform(0.6s, preserve-3d);
+
+            strong {
+                font-weight:700;
+            }
+        }
+
+        h2 {
+            font-size:110%;
+            font-weight:300;
+        }
+    }
+
+    .start {
+        margin-top:100px;
+        text-align:center;
+    }
+}
+
+.play {
+    header {
+        height:150px;
+        margin-top:30px;
+        position:relative;
+
+        hgroup {
+            h1 {
+                font-size:140%;
+                left:-125px;
+                position:fixed;
+                top:210px;
+                z-index:2;
+
+                @include rotate(90deg);
+
+                .gametime {
+                    font-size:60%;
+                    padding-left:10px;
+                    text-transform:normal;
+                }
+            }
+        }
+
+        section.player {
+            float:right;
+            margin:-100px 60px 0 0;
+
+            @include transition;
+
+            .points {
+                color:#fff;
+                display:inline-block;
+                font-size:100%;
+                font-weight:900;
+                border-radius:50%;
+                height:60px;
+                line-height:60px;
+                text-align:center;
+                width:60px;
+            }
+
+            .name {
+                font-size:160%;
+                font-weight:300;
+            }
+
+            &:nth-child(2n+1) {
+                .points {
+                    background:$player-one-color;
+                }
+            }
+
+            &:nth-child(2) {
+                margin-right:0;
+
+                .points {
+                    background:$player-two-color;
+
+                }
+            }
+
+            &.player-active-true {
+                opacity:1;
+                margin-top:0;
+            }
+
+            &.player-active-false {
+                opacity:.2;
+
+                &:hover {
+                    margin-top:0;
+                }
+            }
+
+        }
+    }
+
+    ul#gameboard {
+        $border-radius:15px;
+
+        list-style-type:none;
+
+        li {
+            float:left;
+            font-size:160%;
+            height:100px;
+            margin:0 30px 30px 0;
+            position:relative;
+            text-align:center;
+            width:212px;
+
+
+
+            &:nth-child(4n+4) {
+                margin-right:0;
+            }
+
+            &.selected-true {
+                .card {
+                   @include rotateY(180deg);    
+                }
+            }
+
+            &.found-by-player-0,
+            &.found-by-player-1 {
+                opacity:.4;
+
+                .card {
+                    color:#fff;
+
+                    &:hover {
+                        @include drop-shadow(0, 0, $blur: 20px, $alpha: 0.1);
+                        @include remove-transition();
+                    }
+
+                    .front {
+                        display:none;
+                    }
+
+                    .back {
+                        @include rotateY(0);
+
+                        display:block;
+
+                    }
+                }
+            }
+
+            &.found-by-player-0 {
+                .card {
+                    background:$player-two-color;
+                }
+            }
+            &.found-by-player-1 {
+                .card {
+                    background:$player-one-color;
+                }
+            }
+
+            .card {
+                border:1px solid #fff;
+                border-radius:$border-radius;
+                position:relative;
+                height: 100%;
+                width: 100%;
+
+                @include drop-shadow(0, 0, $blur: 20px, $alpha: 0.1);
+                @include threedtransform(0.6s, preserve-3d);
+
+                &:hover {
+                    @include drop-shadow(0, 0, $blur: 20px, $alpha: 0.3);
+                }
+
+                .front, .back {
+                    border-radius:$border-radius;
+                    height:100%;
+                    position:absolute;
+                    width:100%;
+                    -webkit-backface-visibility:hidden;
+                }
+
+                .front {
+                    font-size:220%;
+                    font-weight:300;
+                    padding-top:25px;
+
+                    a {
+                        display:block;
+                        height:100%;
+                        width:100%;
+                    }
+                }
+
+                .back {
+                    @include rotateY(180deg);
+
+                    p {
+                        padding-top:10px;
+                        font-size:140%;
+                    }
+                }
+            }
+
+            a {
+                color:#000;
+
+            }
+        }
+    }
+
+    #winner {
+        background:rgba(255, 255, 255, 0.8);
+        position:absolute;
+        height:100%;
+        left:0;
+        top:0;
+        width:100%;
+        z-index:1;
+
+        header {
+            margin-top:150px;
+        }
+
+        .start {
+            font-size:120%;
+            margin-top:100px;
+            text-align:center;
+
+            @include transition;
+
+            &:hover {
+                font-size:200%;
+            }
+        }
+    }
+}
