@@ -55,7 +55,7 @@
     }, CACHE_TIMEOUT);
 
     app.get('/', function (req, res) {
-        var count = parseInt(req.query.count) || 8;
+        var count = parseInt(req.query.count, 10) || 8;
 
         if (!fonts || (count !== fonts.length) ) {
             request(GOOGLE_WEB_FONTS_ENDPOINT, function (error, response, body) {

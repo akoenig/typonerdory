@@ -29,10 +29,7 @@ Typonerdory.service('dataService', [
                     fonts = data;
 
                     deferred.resolve(fonts);
-                })
-                .error(function (data, status, headers, config) {
-                    console.log(config);
-                })
+                });
             } else {
                 deferred.resolve(fonts);
             }
