@@ -13,8 +13,8 @@
     <body data-ng-app="Typonerdory">
         <link data-ng-repeat="font in fonts" data-ng-href='http://fonts.googleapis.com/css?family={{font.family}}:{{font.variant}}' rel='stylesheet' type='text/css'>
 
-        <div id="wrapper" class="row {{section}} ng-cloak" data-ng-cloak>
-            <div class="main" data-ng-view></div>
+        <div id="wrapper" class="row {{section}}">
+            <div class="main ng-cloak" data-ng-view></div>
         </div>
 
         <footer>
