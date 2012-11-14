@@ -8,13 +8,13 @@
         <title></title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width"/>
-        <link rel="stylesheet" href="styles/464c2bd1.main.css"/>
+        <link rel="stylesheet" href="styles/8a2f5244.main.css"/>
     </head>
     <body data-ng-app="Typonerdory">
         <link data-ng-repeat="font in fonts" data-ng-href='http://fonts.googleapis.com/css?family={{font.family}}:{{font.variant}}' rel='stylesheet' type='text/css'>
 
-        <div id="wrapper" class="row {{section}}" data-ng-cloak class="ng-cloak">
-            <div class="main" data-ng-view></div>
+        <div id="wrapper" class="row {{section}}">
+            <div class="main ng-cloak" data-ng-view></div>
         </div>
 
         <footer>
@@ -38,12 +38,18 @@
 
         <script src="scripts/7fa7dbaa.scripts.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-6696646-18']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
         </script>
     </body>
 </html>
