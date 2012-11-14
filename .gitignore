@@ -1,4 +1,5 @@
 *node_modules*
 src/backend/environment.js
 src/frontend/temp/*
+src/frontend/dist/*
 *.sass-cache
