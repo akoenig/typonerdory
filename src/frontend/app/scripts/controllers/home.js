@@ -7,6 +7,10 @@
  *
  */
 
-Typonerdory.controller('HomeController', function($scope) {
-    'use strict';
-});
+Typonerdory.controller('HomeController', [
+
+    function ($scope) {
+        'use strict';
+
+    }
+]);

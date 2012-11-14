@@ -1,0 +1,18 @@
+<article>
+    <header>
+        <section data-ng-repeat="player in game.players">
+            <p>Spieler: {{player.name}}</p>
+            <p>Punkte: {{player.points}}</p>
+            <p>An der Reihe? {{player.active}}</p>
+        </section>
+
+        <p>Zu Ende? {{game.finished}}</p>
+        <p>{{game.time}}</p>
+    </header>
+
+    <ul id="gameboard">
+        <li data-ng-repeat="deck in game.decks" style="font-family:'{{deck.content.family}}'">
+            <a data-ng-click="selectDeck(deck.id)">{{deck.no}} {{deck.content.family}}</a>
+        </li>
+    </ul>
+</article>

@@ -16,7 +16,11 @@ var Typonerdory = angular.module('Typonerdory', [])
                 templateUrl: 'views/home.html',
                 controller: 'HomeController'
             })
+            .when('/play', {
+                templateUrl: 'views/play.html',
+                controller: 'PlayController'
+            })
             .otherwise({
                 redirectTo: '/'
             });
-  }]);
+    }]);

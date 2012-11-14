@@ -10,13 +10,15 @@
      http = require('http'),
      pkg = require('./package.json'),
      request = require('request'),
-     Settings = require('settings');
+     Settings = require('settings'),
+     underscore = require('underscore'),
+     uuid = require('node-uuid');
 
 (function () {
     'use strict';
 
 
-    var CACHE_TIMEOUT = 300000,
+    var CACHE_TIMEOUT = 180000,
         GOOGLE_WEB_FONTS_ENDPOINT = 'https://www.googleapis.com/webfonts/v1/webfonts?',
         app = express(),
         config = {},
@@ -53,10 +55,28 @@
     }, CACHE_TIMEOUT);
 
     app.get('/', function (req, res) {
-        if (!fonts) {
+        var count = parseInt(req.query.count) || 8;
+
+        if (!fonts || (count !== fonts.length) ) {
             request(GOOGLE_WEB_FONTS_ENDPOINT, function (error, response, body) {
+                var i = 0,
+                    item;
+
                 if (!error && response.statusCode === 200) {
-                    fonts = JSON.parse(body);
+                    body = JSON.parse(body);
+                    body = underscore.shuffle(body.items);
+
+                    fonts = [];
+
+                    for (i; i < count; i = i + 1) {
+                        item = body[i];
+
+                        fonts.push({
+                            id: 'font-' + uuid.v4(),
+                            family: item.family,
+                            variant: item.variants[0]
+                        });
+                    }
 
                     res.jsonp(fonts);
                 }
