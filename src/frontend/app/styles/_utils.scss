@@ -1,0 +1,96 @@
+/*!
+ * Typonerdory - google-web-fonts-wrapper
+ *
+ * Copyright(c) 2012 New York City, USA - All rights reserved.
+ *
+ * Author: André König <andre.koenig@gmail.com>
+ *
+ * Modular Scale
+ * http://modularscale.com/scale/?px1=14&px2=160&ra1=1.618&ra2=0
+ * ----------------------
+ * 14px @ 1:1.618
+ * 160px @ 1:1.618
+ * ----------------------
+ */
+
+@mixin perspective {
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -o-perspective: 1000;
+    perspective: 1000;
+}
+
+@mixin rotate($deg) {
+    -webkit-transform:rotateY($deg);
+    -moz-transform:rotateY($deg);
+    -o-transform:rotateY($deg);
+    transform:rotateY($deg);     
+}
+
+@mixin threedtransform($dur, $style) {
+    -webkit-transition:$dur;
+    -webkit-transform-style:$style;
+
+    -moz-transition:$dur;
+    -moz-transform-style:$style;
+
+    -o-transition:$dur;
+    -o-transform-style:$style;
+
+    transition:$dur;
+    transform-style:$style;
+}
+
+@mixin transition($duration:0.2s, $ease:ease-out) {
+  -webkit-transition: all $duration $ease;
+  -moz-transition: all $duration $ease;
+  transition: all $duration $ease;
+}
+
+@mixin radial-gradient($innerColor, $outerColor) {
+    background:$innerColor;
+    background:-moz-radial-gradient(center, ellipse cover,  $innerColor 0%, $outerColor 100%);
+    background:-webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$innerColor), color-stop(100%,$outerColor));
+    background:-webkit-radial-gradient(center, ellipse cover,  $innerColor 0%,$outerColor 100%);
+    background:-o-radial-gradient(center, ellipse cover,  $innerColor 0%,$outerColor 100%);
+    background:-ms-radial-gradient(center, ellipse cover,  $innerColor 0%,$outerColor 100%);
+    background:radial-gradient(ellipse at center,  $innerColor 0%,$outerColor 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='$innerColor', endColorstr='$outerColor',GradientType=1 );
+    background-attachment:fixed;
+}
+
+@mixin rotateY($deg) {
+    transform:rotateY($deg);
+    -ms-transform:rotateY($deg);
+    -webkit-transform:rotateY($deg);
+    -o-transform:rotateY($deg);
+    -moz-transform:rotateY($deg);
+}
+
+@mixin rotateX($deg) {
+    transform:rotateX($deg);
+    -ms-transform:rotateX($deg);
+    -webkit-transform:rotateX($deg);
+    -o-transform:rotateY($deg);
+    -moz-transform:rotateX($deg);
+}
+
+@mixin rotate($deg) {
+    transform:rotate($deg);
+    -ms-transform:rotate($deg);
+    -webkit-transform:rotate($deg);
+    -o-transform:rotate($deg);
+    -moz-transform:rotate($deg);
+}
+
+@mixin drop-shadow($x-axis: 0, $y-axis: 1px, $blur: 2px, $alpha: 0.1) {
+    -webkit-box-shadow:$x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
+    -moz-box-shadow:$x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
+    box-shadow:$x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
+}
+
+@mixin remove-transition() {
+    -webkit-transition:none !important;
+    -moz-transition:none !important;
+    transition:none !important;
+}

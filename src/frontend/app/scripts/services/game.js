@@ -18,7 +18,8 @@ Typonerdory.service('gameService', [
             players: [],
             decks: [],
             time: 1,
-            finished: false
+            finished: false,
+            winner: null
         },
         privates = {};
 
@@ -73,6 +74,13 @@ Typonerdory.service('gameService', [
             }
         };
 
+        privates.getWinner = function () {
+            var playerOne = data.players[0],
+                playerTwo = data.players[1];
+
+            return (playerOne.points > playerTwo.points) ? playerOne : playerTwo;
+        };
+
         privates.getDeck = function (id) {
             return _.where(data.decks, {id: id})[0];
         };
@@ -82,7 +90,15 @@ Typonerdory.service('gameService', [
         };
 
         privates.getFoundDecks = function () {
-            return _.where(data.decks, {found: true});
+            var foundDecks = _.filter(data.decks, function (deck) {
+                return (deck.found !== false);
+            }) || { length:0 };
+
+            if (!foundDecks) {
+                foundDecks = 0;
+            }
+
+            return foundDecks;
         };
 
         privates.getSelectedDecks = function () {
@@ -111,6 +127,7 @@ Typonerdory.service('gameService', [
             // Create two players
             // The first player.
             data.players.push({
+                id: 0,
                 name: nameService.generate(),
                 points: 0,
                 active: false
@@ -118,6 +135,7 @@ Typonerdory.service('gameService', [
 
             // The first player.
             data.players.push({
+                id: 1, 
                 name: nameService.generate(data.players[0].name), // Avoid same name
                 points: 0,
                 active: false
@@ -134,7 +152,8 @@ Typonerdory.service('gameService', [
                         family: deck.family,
                         variant: deck.variant
                     },
-                    found: false
+                    found: false,
+                    selected: false
                 });
 
                 data.decks.push({
@@ -143,7 +162,8 @@ Typonerdory.service('gameService', [
                         family: clonedDeck.family,
                         variant: clonedDeck.variant
                     },
-                    found: false
+                    found: false,
+                    selected: false
                 });
             }
 
@@ -180,21 +200,27 @@ Typonerdory.service('gameService', [
             selectedDecks = privates.getSelectedDecks();
 
             if (2 === selectedDecks.length) {
-                firstDeck = selectedDecks[0];
-                secondDeck = selectedDecks[1];
 
-                if (firstDeck.content.family === secondDeck.content.family) {
-                    player.points = player.points + 1;
-                    firstDeck.found = secondDeck.found = true;
-                } else {
-                    privates.nextPlayer();
-                }
+                // Here we have to slow down the interaction. Otherwise
+                // the user would not recognize if the cards are equal or not.
+                $timeout(function () {
+                    firstDeck = selectedDecks[0];
+                    secondDeck = selectedDecks[1];
 
-                privates.clearSelectedDecks();
+                    if (firstDeck.content.family === secondDeck.content.family) {
+                        player.points = player.points + 1;
+                        firstDeck.found = secondDeck.found = player.id;
+                    } else {
+                        privates.nextPlayer();
+                    }
 
-                if (privates.getDecks().length === privates.getFoundDecks().length) {
-                    data.finished = true;
-                }
+                    privates.clearSelectedDecks();
+
+                    if (privates.getDecks().length === privates.getFoundDecks().length) {
+                        data.winner = privates.getWinner();
+                        data.finished = true;
+                    }
+                }, 1000);
             }
         };
     }

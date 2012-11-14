@@ -1,18 +1,38 @@
-<article>
+<article fader="500">
     <header>
-        <section data-ng-repeat="player in game.players">
-            <p>Spieler: {{player.name}}</p>
-            <p>Punkte: {{player.points}}</p>
-            <p>An der Reihe? {{player.active}}</p>
-        </section>
+        <hgroup>
+            <h1>Typo<strong>nerd</strong>ory <span class="gametime" data-ng-hide="game.finished">The game is running since <strong>{{game.time}}</strong> seconds.</span></h1>
+        </hgroup>
 
-        <p>Zu Ende? {{game.finished}}</p>
-        <p>{{game.time}}</p>
+        <section data-ng-repeat="player in game.players" class="player player-active-{{player.active}}">
+            <p class="points">{{player.points}}</p>
+            <p class="name">{{player.name}}</p>
+        </section>
     </header>
 
-    <ul id="gameboard">
-        <li data-ng-repeat="deck in game.decks" style="font-family:'{{deck.content.family}}'">
-            <a data-ng-click="selectDeck(deck.id)">{{deck.no}} {{deck.content.family}}</a>
+    <ul id="gameboard" class="cf">
+        <li data-ng-repeat="deck in game.decks" class="selected-{{deck.selected}} found-by-player-{{deck.found}}">
+            <div class="card">
+                <div class="front">
+                    <a data-ng-click="selectDeck(deck.id)">{{deck.no}}</a>
+                </div>
+                <div class="back" style="font-family:'{{deck.content.family}}'" title="{{deck.content.family}}">
+                    <p>{{deck.content.family}}</p>
+                </div>
+            </div>
         </li>
     </ul>
+</article>
+
+<article id="winner" data-ng-show="game.finished" fader="500">
+    <header>
+        <h1>Hooooraaaay!!!</h1>
+        <h2>Congratulations, {{game.winner.name}}. You rock!</h2>
+    </header>
+
+    <p class="start">
+        <a class="button" href="/"><span class="icon">✪</span> Restart?</a>
+    </p>
+
+
 </article>

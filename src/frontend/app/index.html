@@ -9,9 +9,19 @@
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width"/>
         <link rel="stylesheet" href="styles/main.css"/>
-
     </head>
     <body data-ng-app="Typonerdory">
+        <link data-ng-repeat="font in fonts" data-ng-href='http://fonts.googleapis.com/css?family={{font.family}}:{{font.variant}}' rel='stylesheet' type='text/css'>
+
+        <div id="wrapper" class="row {{section}}" data-ng-cloak class="ng-cloak">
+            <div class="main" data-ng-view></div>
+        </div>
+
+        <footer>
+            <p class="row">
+                A little project from me, <a href="http://profile.lochkartenstanzer.de">André König</a>.
+            </p>
+        </footer>
 
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -22,11 +32,6 @@
             <script src="scripts/vendor/json3.min.js"></script>
         <![endif]-->
 
-        <link data-ng-repeat="font in fonts" data-ng-href='http://fonts.googleapis.com/css?family={{font.family}}:{{font.variant}}' rel='stylesheet' type='text/css'>
-
-        <!-- Add your site or application content here -->
-        <div class="container" data-ng-view></div>
-
         <script src="scripts/vendor/angular.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
         <script src="scripts/vendor/zepto.js"></script>
@@ -36,6 +41,7 @@
         <script src="scripts/services/data.js"></script>
         <script src="scripts/services/game.js"></script>
         <script src="scripts/services/name.js"></script>
+        <script src="scripts/services/title.js"></script>
         <script src="scripts/directives/fader.js"></script>
         <script src="scripts/controllers/home.js"></script>
         <script src="scripts/controllers/play.js"></script>

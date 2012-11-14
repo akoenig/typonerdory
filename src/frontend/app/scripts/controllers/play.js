@@ -24,6 +24,6 @@ Typonerdory.controller('PlayController', [
 
         $scope.selectDeck = function (id) {
             gameService.selectDeck(id);
-        }
+        };
     }
 ]);

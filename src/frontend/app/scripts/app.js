@@ -24,3 +24,31 @@ var Typonerdory = angular.module('Typonerdory', [])
                 redirectTo: '/'
             });
     }]);
+
+Typonerdory.run([
+    '$rootScope',
+    'titleService',
+
+    function ($rootScope, titleService) {
+        $rootScope.$on('$routeChangeStart', function(scope, next, current) {
+            var section,
+                title = 'Typonerdory » ';
+
+            switch (next.$route.controller) {
+
+            case 'HomeController':
+                section = 'home';
+                title = title + 'Hello';
+            break;
+
+            case 'PlayController':
+                section = 'play';
+                title = title + 'The Game';
+            break;
+            }
+            
+            titleService.set(title);
+            $rootScope.section = section;
+        });
+    }
+]);
