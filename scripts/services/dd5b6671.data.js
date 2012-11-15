@@ -30,9 +30,9 @@ Typonerdory.service('dataService', [
 
                     deferred.resolve(fonts);
                 })
-                .error(function (data, status, headers, config) {
-                    console.log(config);
-                })
+                .error(function (data) {
+                    alert("Google Web Fonts - API Limit exceeded")
+                });
             } else {
                 deferred.resolve(fonts);
             }
