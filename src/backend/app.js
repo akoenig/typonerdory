@@ -17,7 +17,6 @@
 (function () {
     'use strict';
 
-
     var CACHE_TIMEOUT = 180000,
         GOOGLE_WEB_FONTS_ENDPOINT = 'https://www.googleapis.com/webfonts/v1/webfonts?',
         app = express(),
@@ -79,6 +78,9 @@
                     }
 
                     res.jsonp(fonts);
+                } else {
+                    body = JSON.parse(body);
+                    res.jsonp(body, 500);
                 }
             });
         } else {
