@@ -14,7 +14,7 @@ Typonerdory.service('dataService', [
     function ($q, $http) {
         'use strict';
 
-        var apiEndpoint = 'http://localhost:8080/?callback=JSON_CALLBACK',
+        var apiEndpoint = 'http://typonerdory-apiwrapper.aws.af.cm/?callback=JSON_CALLBACK',
             fonts;
 
         this.initialize = function () {
