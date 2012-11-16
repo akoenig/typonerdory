@@ -17,7 +17,7 @@
 (function () {
     'use strict';
 
-    var CACHE_TIMEOUT = 18000,
+    var CACHE_TIMEOUT = 5000,
         GOOGLE_WEB_FONTS_ENDPOINT = 'https://www.googleapis.com/webfonts/v1/webfonts',
         app = express(),
         config = {},
@@ -58,30 +58,21 @@
     privates.grabFonts = function (count, cb) {
         request(GOOGLE_WEB_FONTS_ENDPOINT, function (error, response, body) {
             var i = 0,
-                font,
-                fontCount,
-                allFonts,
-                grabbedFonts;
+                fonts;
 
             if (!error && response.statusCode === 200) {
                 body = JSON.parse(body);
                 fonts = underscore.shuffle(body.items);
 
-                fontCount = count;
-
-                grabbedFonts = [];
-
-                for (i; i < fontCount; i = i + 1) {
-                    font = fonts[i];
-
-                    grabbedFonts.push({
+                for (i; i < count; i = i + 1) {
+                    fonts[i] = {
                         id: 'font-' + uuid.v4(),
-                        family: font.family,
-                        variant: font.variants[0]
-                    });
+                        family: fonts[i].family,
+                        variant: fonts[i].variants[0]
+                    };
                 }
 
-                cb(null, grabbedFonts);
+                cb(null, fonts.slice(0, count));
             } else {
                 body = JSON.parse(body);
                 cb(body);
@@ -107,7 +98,6 @@
         var count = parseInt(req.query.count, 10) || 8;
 
         if (fonts.length !== count) {
-            console.log("REQUEST");
             privates.grabFonts(count, function (error, grabbedFonts) {
                 if (error) {
                     res.json(error, 500);
