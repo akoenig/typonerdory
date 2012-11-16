@@ -24,7 +24,7 @@
     </ul>
 </article>
 
-<article id="winner" data-ng-show="game.finished" fader="500">
+<article id="winner" class="dialog" data-ng-show="game.finished" fader="500">
     <header>
         <h1>Hooooraaaay!!!</h1>
         <h2>Congratulations, {{game.winner.name}}. You rock!</h2>
@@ -32,5 +32,16 @@
 
     <p class="start">
         <a class="button" href="http://akoenig.github.com/typonerdory/"><span class="icon">✪</span> Restart?</a>
+    </p>
+</article>
+
+<article id="error" class="dialog" data-ng-show="error" fader="500">
+    <header>
+        <h1>Ouch!!!</h1>
+        <h2>An error occurred! We are working on this.</h2>
+    </header>
+
+    <div class="alert-box alert">
+        {{error}}
     </p>
 </article>

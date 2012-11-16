@@ -16,11 +16,17 @@ Typonerdory.controller('PlayController', [
     function($rootScope, $scope, dataService, gameService) {
         'use strict';
 
-        dataService.initialize().then(function (fonts) {
-            $rootScope.fonts = fonts;
+        dataService.initialize().then(
+            function (fonts) {
+                $rootScope.fonts = fonts;
 
-            $scope.game = gameService.start($rootScope.fonts);
-        });
+                $scope.game = gameService.start($rootScope.fonts);
+            },
+            function (error) {
+                console.log(error);
+                $scope.error = error;
+            }
+        );
 
         $scope.selectDeck = function (id) {
             gameService.selectDeck(id);

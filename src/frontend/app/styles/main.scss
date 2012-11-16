@@ -63,6 +63,32 @@ $footer-height:40px;
     }
 }
 
+.dialog {
+    background:rgba(255, 255, 255, 0.8);
+    position:absolute;
+    height:100%;
+    left:0;
+    top:0;
+    width:100%;
+    z-index:1;
+
+    header {
+        margin-top:150px;
+    }
+
+    .start {
+        font-size:120%;
+        margin-top:100px;
+        text-align:center;
+
+        @include transition;
+
+        &:hover {
+            font-size:200%;
+        }
+    }
+}
+
 [ng\:cloak], [data-ng-cloak], .ng-cloak {
   display: none;
 }
@@ -357,18 +383,6 @@ body {
     }
 
     #winner {
-        background:rgba(255, 255, 255, 0.8);
-        position:absolute;
-        height:100%;
-        left:0;
-        top:0;
-        width:100%;
-        z-index:1;
-
-        header {
-            margin-top:150px;
-        }
-
         .start {
             font-size:120%;
             margin-top:100px;

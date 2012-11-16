@@ -14,25 +14,22 @@ Typonerdory.service('dataService', [
     function ($q, $http) {
         'use strict';
 
-        var apiEndpoint = 'http://typonerdory-apiwrapper.aws.af.cm/?callback=JSON_CALLBACK',
+        var apiEndpoint = 'http://typonerdory-apiwrapper.rs.af.cm/?callback=JSON_CALLBACK',
             fonts;
 
         this.initialize = function () {
             var deferred = $q.defer();
 
             if (fonts === undefined) {
-                $http({
-                    method: 'JSONP',
-                    url: apiEndpoint
-                })
-                .success(function(data) {
-                    fonts = data;
+                $http.jsonp(apiEndpoint)
+                    .success(function(data) {
+                        fonts = data;
 
-                    deferred.resolve(fonts);
-                })
-                .error(function (data) {
-                    alert("Google Web Fonts - API Limit exceeded")
-                });
+                        deferred.resolve(fonts);
+                    })
+                    .error(function (data, status, headers, config) {
+                        deferred.reject(data);
+                    });
             } else {
                 deferred.resolve(fonts);
             }

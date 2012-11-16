@@ -99,11 +99,11 @@
         if (fonts.length !== count) {
             privates.grabFonts(count, function (error, grabbedFonts) {
                 if (error) {
-                    res.json(error, 500);
+                    res.jsonp(error, 500);
                 } else {
                     fonts = grabbedFonts;
 
-                    res.json(fonts);
+                    res.jsonp(fonts);
                 }
             });
         } else {
