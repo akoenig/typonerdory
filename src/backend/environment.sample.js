@@ -11,13 +11,15 @@ module.exports = {
     common: {
         environment: {
             port: 8080,
-            apiKey: 'INSERT_KEY_HERE'
+            apiKey: 'INSERT_KEY_HERE',
+            emptyCache: 120000
         }
     },
     production: {
         environment: {
             port: 8080,
-            apiKey: 'INSERT_KEY_HERE'
+            apiKey: 'INSERT_KEY_HERE',
+            emptyCache: 120000
         }
     }
 };

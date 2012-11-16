@@ -17,19 +17,11 @@
 (function () {
     'use strict';
 
-    var CACHE_TIMEOUT = 5000,
-        GOOGLE_WEB_FONTS_ENDPOINT = 'https://www.googleapis.com/webfonts/v1/webfonts',
+    var GOOGLE_WEB_FONTS_ENDPOINT = 'https://www.googleapis.com/webfonts/v1/webfonts',
         app = express(),
         config = {},
         fonts = [],
         privates = {};
-
-    //
-    // Cache clear interval
-    //
-    setInterval(function () {
-        fonts = [];
-    }, CACHE_TIMEOUT);
 
     //
     // Method for loading the configuration from the environment file.
@@ -90,6 +82,13 @@
     });
 
     config = privates.loadConfiguration();
+
+    //
+    // Cache clear interval
+    //
+    setInterval(function () {
+        fonts = [];
+    }, config.environment.emptyCache);
 
     //
     // Routes.
