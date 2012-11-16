@@ -1,6 +1,10 @@
 CACHE MANIFEST
 
+<<<<<<< HEAD
 # Time: Thu Nov 15 2012 20:51:48 GMT-0500 (EST)
+=======
+# Time: Thu Nov 15 2012 17:30:24 GMT+0100 (CET)
+>>>>>>> 5b0788d60d5313731701de67c796333c5e814a80
 # This manifest was created by confess.js, http://github.com/jamesgpearce/confess
 #
 # Retrieved URL: http://localhost:3501/#/
@@ -22,8 +26,12 @@ CACHE MANIFEST
 
 CACHE:
 http://www.google-analytics.com/ga.js
+<<<<<<< HEAD
 scripts/bec0da44.scripts.js
 scripts/vendor/2556681b.angular.js
+=======
+scripts/bc832d16.scripts.js
+>>>>>>> 5b0788d60d5313731701de67c796333c5e814a80
 scripts/vendor/61e66962.zepto.js
 scripts/vendor/e39678cf.underscore.js
 styles/99cfa1f2.main.css
