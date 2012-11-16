@@ -61,7 +61,7 @@ Typonerdory.service('gameService', [
                 player = data.players[i];
 
                 if (player.active) {
-                    activeIndex = i
+                    activeIndex = i;
                 }
 
                 player.active = false;
