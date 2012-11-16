@@ -18,7 +18,7 @@
     'use strict';
 
     var CACHE_TIMEOUT = 180000,
-        GOOGLE_WEB_FONTS_ENDPOINT = 'https://www.googleapis.com/webfonts/v1/webfonts?',
+        GOOGLE_WEB_FONTS_ENDPOINT = 'https://www.googleapis.com/webfonts/v1/webfonts',
         app = express(),
         config = {},
         fonts;
@@ -38,7 +38,6 @@
         app.set('port', process.env.PORT || config.environment.port);
 
         GOOGLE_WEB_FONTS_ENDPOINT = GOOGLE_WEB_FONTS_ENDPOINT + '?key=' + config.environment.apiKey;
-
     } catch (e) {
         console.log(e);
         console.log('[ERROR] Application is not configured. Verify your config directory.');
