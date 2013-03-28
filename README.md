@@ -10,4 +10,4 @@ You can find a deployed version [here](http://akoenig.github.com/typonerdory). H
 
 ## Author
 
-Copyright (c) 2012, [André König](http://lochkartenstanzer.de) ([Google+](http://profile.lochkartenstanzer.de)) (andre.koenig -[at]- gmail [*dot*] com)
+Copyright (c) 2013, [André König](http://iam.andrekoenig.info)
